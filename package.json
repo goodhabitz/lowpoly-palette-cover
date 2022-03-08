@@ -1,0 +1,70 @@
+{
+  "name": "lowpoly-palette-cover",
+  "version": "1.1.0",
+  "private": false,
+  "description": "Takes an image and generates a low-poly background image based on its color palette.",
+  "license": "MIT",
+  "author": "Israel Roldan <npm@isro.me>",
+  "main": "lib/index.js",
+  "scripts": {
+    "compile": "babel src -d lib --ignore src/**/*.test.js",
+    "lint": "eslint src",
+    "precommit": "lint-staged",
+    "prepush": "yarn qa",
+    "prepublish": "yarn qa && yarn compile",
+    "qa": "yarn test && yarn lint",
+    "release": "standard-version",
+    "test": "jest src"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier-eslint --write",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.17.2",
+    "@victorioberra/trianglify-browser": "^4.1.1",
+    "node-vibrant": "3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-env": "^7.3.1",
+    "eslint": "^5.14.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.3.1",
+    "jest": "^24.1.0",
+    "jest-canvas-mock": "^2.3.1",
+    "lint-staged": "^8.1.4",
+    "prettier-eslint-cli": "^4.7.1",
+    "sort-package-json": "^1.19.0",
+    "standard-version": "^5.0.0"
+  }
+}
